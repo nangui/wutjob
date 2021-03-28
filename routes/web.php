@@ -50,6 +50,12 @@ Route::post('category/create', [JobCategoryController::class, 'store'])
 Route::get('user/jobs', [JobController::class, 'index'])
     ->middleware(['auth'])->name('user.jobs');
 
+Route::get('user/jobs/create', [JobController::class, 'create'])
+    ->middleware(['auth'])->name('user.job.create');
+
+Route::post('user/jobs/create', [JobController::class, 'store'])
+    ->middleware(['auth'])->name('user.job.store');
+
 Route::get('user/applies', [ApplyController::class, 'index'])
     ->middleware(['auth'])->name('user.applies');
 

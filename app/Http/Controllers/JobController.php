@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -24,7 +25,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('user.job.new-jobs');
+        return view('user.job.new-job')->with('categories', JobCategory::all());
     }
 
     /**
@@ -35,7 +36,27 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_id' => 'required',
+            'title' => 'required|string',
+            'enterprise' => 'required|string',
+            'speciality' => 'required|string',
+            'experience' => 'required|integer',
+            'description' => 'required|string',
+            'due_date' => 'required|date',
+        ]);
+
+        Job::create([
+            'job_category_id' => $request->category_id,
+            'title' => $request->title,
+            'enterprise' => $request->enterprise,
+            'speciality' => $request->speciality,
+            'experience' => $request->experience,
+            'description' => $request->description,
+            'due_date' => $request->due_date
+        ]);
+
+        return redirect('user/jobs')->with('status', 'Job créé avec succès');
     }
 
     /**
