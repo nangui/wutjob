@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplyController;
+use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,9 @@ Route::post('user/cv/store', [ProfileController::class, 'store'])
 
 Route::put('user/profile/update', [ProfileController::class, 'update'])
     ->middleware(['auth'])->name('user.cv.update');
+
+Route::post('category/create', [JobCategoryController::class, 'store'])
+    ->middleware(['auth'])->name('job.cat.create');
 
 Route::get('user/jobs', [JobController::class, 'index'])
     ->middleware(['auth'])->name('user.jobs');

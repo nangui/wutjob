@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
+use App\Models\JobCategory;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class JobCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('user.job.jobs')->with('jobs', Job::all());
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('user.job.new-jobs');
+        //
     }
 
     /**
@@ -35,7 +35,17 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        JobCategory::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()
+            ->back()
+            ->with('status', 'La catégorie a été créée avec succès.');
     }
 
     /**
