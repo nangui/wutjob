@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class CurriculumVitae extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'age',
+        'address',
+        'email',
+        'phone',
+        'speciality',
+        'level',
+        'experience'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

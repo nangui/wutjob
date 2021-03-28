@@ -7,22 +7,10 @@
 
     <div class="flex py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-        <div class="p-6 w-1/5 bg-white shadow-sm sm:rounded-lg mr-5">
-            <ul class="flex flex-col space-y-2">
-                <li class="p-2 hover:bg-gray-100 cursor-pointer sm:rounded-lg">
-                    <a href="#">Mon Curicculum Vitae</a>
-                </li>
-                <li class="p-2 hover:bg-gray-100 cursor-pointer sm:rounded-lg">
-                    <a href="#">Mes offres</a>
-                </li>
-                <li class="p-2 hover:bg-gray-100 cursor-pointer sm:rounded-lg">
-                    <a href="#">Mes demandes</a>
-                </li>
-            </ul>
-        </div>
+        @include('layouts.left-nav')
 
         <div class="flex-1">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-col">
                         <div class="md:col-span-1">
@@ -32,8 +20,17 @@
                                 </h3>
                             </div>
                         </div>
+                        <!-- Validation Errors -->
+                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
                         <div class="mt-5">
-                            <form method="POST" action="" class="w-full">
+                            @if (session('status'))
+                            <div class="bg-green-300 text-white p-2 mb-4 rounded-sm">
+                                {{ session('status') }}
+                            </div>
+                            @endif
+                            <form method="POST" action={{ route('updateUser', Auth::user()) }} class="w-full">
+                                @csrf
+                                <input type="hidden" name="basic" value="true" />
                                 <div class="w-full flex gap-5">
                                     <!-- Nom -->
                                     <div class="w-1/2">
@@ -78,8 +75,13 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <form action="POST" action="">
-
+                            @if (session('passwordStatus'))
+                            <div class="bg-green-300 text-white p-2 mb-4 rounded-sm">
+                                {{ session('passwordStatus') }}
+                            </div>
+                            @endif
+                            <form method="POST" action={{ route('updateUser', Auth::user()) }}>
+                                @csrf
                                 <div>
                                     <x-label for="password" :value="__('Entrer le mot de passe actuel')" />
 
