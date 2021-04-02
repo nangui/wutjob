@@ -35,7 +35,7 @@
                                     <div class="w-1/2">
                                         <x-label for="title" :value="__('Titre')" />
 
-                                        <input id="title"
+                                        <input id="title" placeholder="Entrer le titre du post"
                                             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                             type="text" name="title" required autofocus />
                                     </div>
@@ -43,7 +43,7 @@
                                     <div class="w-1/2">
                                         <x-label for="enterprise" :value="__('Entreprise')" />
 
-                                        <input id="enterprise"
+                                        <input id="enterprise" placeholder="Entrer le nom de l'entreprise"
                                             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                             type="text" name="enterprise" required />
                                     </div>
@@ -55,7 +55,7 @@
                                     <div class="mt-4 w-1/2">
                                         <x-label for="speciality" :value="__('Spécialité')" />
 
-                                        <input id="speciality"
+                                        <input id="speciality" placeholder="Entrer la specialité recherchée"
                                             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                             type="text" name="speciality" required />
                                     </div>
@@ -64,17 +64,54 @@
                                     <div class="mt-4 w-1/2">
                                         <x-label for="experience" :value="__('Experience (année)')" />
 
-                                        <input id="experience"
+                                        <input id="experience" placeholder="Année d'experience"
                                             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
                                             type="number" min="1" name="experience" required />
                                     </div>
 
+                                </div>
+
+                                <div class="w-full flex gap-5">
+                                    <!-- salary -->
+                                    <div class="mt-4 w-1/2">
+                                        <x-label for="salary" :value="__('Salaire')" />
+
+                                        <input id="salary" placeholder="Entrer le salaire"
+                                            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"
+                                            type="number" name="salary" required />
+                                    </div>
+
+                                    <!-- work_type -->
+                                    <div class="mt-4 w-1/2">
+                                        <x-label for="work_type" :value="__('Type Travail')" />
+
+                                        <select id="work_type" name="work_type"
+                                            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
+                                            <option>Selectionner un type</option>
+                                            <option value="full_time">A plein temps</option>
+                                            <option value="part_time">A temps partiel</option>
+                                            <option value="stage">Stage</option>
+                                        </select>
+                                    </div>
 
                                 </div>
 
-                                <div class="mt-4 w-full flex gap-5">
+                                <div class="w-full flex gap-5">
+                                    <!-- location -->
+                                    <div class="mt-4 w-1/2">
+                                        <x-label for="location" :value="__('Ville')" />
 
-                                    <div class="w-1/3">
+                                        <select id="location" name="location"
+                                            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
+                                            <option>Selectionner une ville</option>
+                                            <option value="dakar">Dakar</option>
+                                            <option value="thies">Thies</option>
+                                            <option value="saint_louis">Saint-louis</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Categorie -->
+                                    <div class="mt-4 w-1/2">
                                         <x-label for="category_id" :value="__('Categorie')" />
 
                                         <select id="category_id" name="category_id"
@@ -87,9 +124,12 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+
+                                <div class="mt-4 w-full flex gap-5">
 
                                     <!-- Experience -->
-                                    <div class="w-1/3">
+                                    <div class="mt-4 w-1/2">
                                         <x-label for="due_date" :value="__('Date de fin')" />
 
                                         <input id="due_date"
@@ -97,10 +137,12 @@
                                             type="date" name="due_date" required />
                                     </div>
 
-                                    <div class="w-1/3">
+                                    <!-- Description -->
+                                    <div class="mt-4 w-1/2">
                                         <x-label for="description" :value="__('Description')" />
 
-                                        <textarea id="description" name="description"
+                                        <textarea id="description" placeholder="Entrer la description"
+                                            name="description"
                                             class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full"></textarea>
                                     </div>
                                 </div>

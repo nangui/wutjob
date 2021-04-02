@@ -3802,13 +3802,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
-document.querySelector('.open-modal').addEventListener('click', function () {
-  document.querySelector('#modal').classList.add('hidden');
-});
-document.querySelector('.close-modal').addEventListener('click', function () {
-  document.querySelector('#modal').classList.remove('hidden');
-});
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

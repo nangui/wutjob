@@ -10,8 +10,13 @@
 
         <form method="POST" action={{route('job.cat.create')}}
             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="pt-4 px-6">
+                <h3 class="text-lg font-black leading-6 text-gray-900">
+                    {{ __('Créer une nouvelle catégorie') }}
+                </h3>
+            </div>
             @csrf
-            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="bg-white px-4 pb-4 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-start w-full ">
                     <div class="mt-4">
                         <x-label for="name" :value="__('Nom categorie')" />

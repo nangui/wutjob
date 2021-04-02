@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JobCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class JobCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,7 +39,7 @@ class JobCategoryController extends Controller
             'name' => 'required|string|max:255'
         ]);
 
-        JobCategory::create([
+        Category::create([
             'name' => $request->name
         ]);
 

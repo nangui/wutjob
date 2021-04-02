@@ -67,14 +67,20 @@
                                 </button>
                             </form>
                         </div>
-                        <div class="md:col-span-1">
+                        <div class="md:col-span-1 change-password-container">
+                            <button
+                                class="btn-change-password mt-4 inline-flex items-center py-2 font-semibold text-xs text-red-400 uppercase tracking-widest active:bg-gray-900 focus:outline-none focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 underline">
+                                {{ __('Modifier le mot de passe') }}
+                            </button>
+                        </div>
+                        <div class="md:col-span-1 form-password hidden">
                             <div class="px-4 sm:px-0">
                                 <h3 class="text-lg font-black leading-6 text-gray-900 mt-10">
-                                    Modification du mot de passe
+                                    {{ __('Modification du mot de passe') }}
                                 </h3>
                             </div>
                         </div>
-                        <div class="mt-5">
+                        <div class="mt-2 form-password hidden">
                             @if (session('passwordStatus'))
                             <div class="bg-green-300 text-white p-2 mb-4 rounded-sm">
                                 {{ session('passwordStatus') }}
@@ -83,10 +89,10 @@
                             <form method="POST" action={{ route('updateUser', Auth::user()) }}>
                                 @csrf
                                 <div>
-                                    <x-label for="password" :value="__('Entrer le mot de passe actuel')" />
+                                    <x-label for="pass" :value="__('Entrer le mot de passe actuel')" />
 
-                                    <x-input id="password" class="block mt-1 w-1/2" type="password" name="pass"
-                                        required />
+                                    <x-input id="pass" class="block mt-1 w-1/2" type="password" name="pass"
+                                        autocomplete="current-password" required />
                                 </div>
 
                                 <div class="w-full flex gap-5 mt-4">
@@ -95,7 +101,7 @@
                                         <x-label for="password" :value="__('Entrer le nouveau mot de passe')" />
 
                                         <x-input id="password" class="block mt-1 w-full" type="password" name="password"
-                                            required />
+                                            autocomplete="new-password" required />
                                     </div>
 
                                     <div class="w-1/2">
@@ -103,15 +109,23 @@
                                             :value="__('Confirmer le nouveau mot de passe')" />
 
                                         <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                                            name="password_confirmation" required />
+                                            autocomplete="new-password" name="password_confirmation" required />
                                     </div>
 
                                 </div>
 
-                                <button type="submit"
-                                    class="mt-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-                                    {{ __('Modifier') }}
-                                </button>
+                                <div class="flex">
+                                    <button type="submit"
+                                        class="mt-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                        {{ __('Modifier') }}
+                                    </button>
+
+                                    <button
+                                        class="btn-change-password underline mt-4 inline-flex items-center ml-6 py-2 font-semibold text-xs text-red-400 uppercase tracking-widest focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                        {{ __('Annuler') }}
+                                    </button>
+
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -120,3 +134,16 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    const btns = document.querySelectorAll('.btn-change-password')
+    for (const btn of btns) {
+        btn.addEventListener('click', function () {
+            document.querySelector('.change-password-container')
+                .classList.toggle('hidden')
+            for (const iterator of document.querySelectorAll('.form-password')) {
+                iterator.classList.toggle('hidden')
+            }
+        })
+    }
+</script>

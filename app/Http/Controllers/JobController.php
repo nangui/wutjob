@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use App\Models\JobCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -15,7 +16,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('user.job.jobs')->with('jobs', Job::all());
+        return view('user.job.jobs')->with('jobs', Job::with('category')->get());
     }
 
     /**
@@ -25,7 +26,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('user.job.new-job')->with('categories', JobCategory::all());
+        return view('user.job.new-job')->with('categories', Category::all());
     }
 
     /**
@@ -44,16 +45,23 @@ class JobController extends Controller
             'experience' => 'required|integer',
             'description' => 'required|string',
             'due_date' => 'required|date',
+            'salary' => 'required|integer',
+            'work_type' => 'required|string',
+            'location' => 'required|string',
         ]);
 
         Job::create([
-            'job_category_id' => $request->category_id,
+            'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
             'title' => $request->title,
             'enterprise' => $request->enterprise,
             'speciality' => $request->speciality,
             'experience' => $request->experience,
             'description' => $request->description,
-            'due_date' => $request->due_date
+            'due_date' => $request->due_date,
+            'salary' => $request->salary,
+            'work_type' => $request->work_type,
+            'location' => $request->location,
         ]);
 
         return redirect('user/jobs')->with('status', 'Job créé avec succès');

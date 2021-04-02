@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\ApplyController;
-use App\Http\Controllers\JobCategoryController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -44,7 +43,7 @@ Route::post('user/cv/store', [ProfileController::class, 'store'])
 Route::put('user/profile/update', [ProfileController::class, 'update'])
     ->middleware(['auth'])->name('user.cv.update');
 
-Route::post('category/create', [JobCategoryController::class, 'store'])
+Route::post('category/create', [CategoryController::class, 'store'])
     ->middleware(['auth'])->name('job.cat.create');
 
 Route::get('user/jobs', [JobController::class, 'index'])
@@ -58,5 +57,8 @@ Route::post('user/jobs/create', [JobController::class, 'store'])
 
 Route::get('user/applies', [ApplyController::class, 'index'])
     ->middleware(['auth'])->name('user.applies');
+
+Route::post('user/job/apply', [ApplyController::class, 'store'])
+    ->middleware(['auth'])->name('user.job.apply');
 
 require __DIR__ . '/auth.php';

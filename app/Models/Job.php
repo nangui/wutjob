@@ -10,17 +10,43 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-        'job_category_id',
+        'user_id',
+        'category_id',
         'title',
         'enterprise',
         'speciality',
         'description',
         'due_date',
-        'completed'
+        'completed',
+        'salary',
+        'work_type',
+        'location',
     ];
+
+    protected $dates = [
+        'due_date',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function category()
     {
-        return $this->belongsTo(JobCategory::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getWorkTypeAttribute($value)
+    {
+        $type = '';
+        if ($value === 'full_time') {
+            $type = 'A temps plein';
+        } else if ($value === 'part_time') {
+            $type = 'A temps partiel';
+        } else {
+            $type = 'Stage';
+        }
+        return $type;
     }
 }

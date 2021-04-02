@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tableau de bord') }}
+            {{ __('Liste des offres') }}
         </h2>
     </x-slot>
     <div x-data="{ opened: false }">
@@ -85,14 +85,14 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Active
+                                                {{ $job->description }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $job->description }}
+                                            {{ $job->due_date->format('d-m-Y') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $job->due_date }}
+                                            {{ $job->category->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
