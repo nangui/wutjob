@@ -49,4 +49,9 @@ class Job extends Model
         }
         return $type;
     }
+
+    public function applies()
+    {
+        return $this->hasMany(Apply::class);
+    }
 }

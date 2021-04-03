@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apply;
+use App\Models\CurriculumVitae;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplyController extends Controller
 {
@@ -34,7 +38,28 @@ class ApplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::user()->profile === 'recruiter') {
+            return redirect()->back()->with('warning', 'Un recruteur ne peut postuler à un job.');
+        }
+
+        // if (!CurriculumVitae::where('user_id', Auth::id())->get()) {
+        //     return redirect()->back()->with('warning', 'Vous devez créé un cv avant de postuler.');
+        // }
+
+        $application = Apply::where('user_id', Auth::id())->where('job_id', $request->job_id)
+            ->get();
+
+        if ($application) {
+            return redirect()->back()->with('warning', 'Vous avez déjà postuler à ce job.');
+        }
+
+        Apply::create([
+            'user_id' => Auth::id(),
+            'job_id' => $request->job_id,
+            'comment' => ''
+        ]);
+
+        return redirect()->back()->with('message', 'Vous avez postulé au job.');
     }
 
     /**

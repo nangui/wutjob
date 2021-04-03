@@ -25,7 +25,7 @@
         <!-- Page Heading -->
         <header>
             <div class="max-w-7xl mx-auto py-12 px-8 sm:px-12 lg:px-16">
-                <form method="POST" action="" class="w-full">
+                <form method="GET" action="/search" class="w-full">
                     <div class="flex">
                         <div class="flex-1 relative">
                             <x-heroicon-o-search class="absolute top-3 left-1.5 w-6 h-6 text-gray-500" />
@@ -42,10 +42,10 @@
                                     {{ __('Salaire min.') }}
                                 </option>
                                 <option value="150000">150.000 F CFA</option>
-                                <option value="150000">250.000 F CFA</option>
-                                <option value="150000">350.000 F CFA</option>
-                                <option value="150000">450.000 F CFA</option>
-                                <option value="150000">550.000 F CFA</option>
+                                <option value="250000">250.000 F CFA</option>
+                                <option value="350000">350.000 F CFA</option>
+                                <option value="450000">450.000 F CFA</option>
+                                <option value="550000">550.000 F CFA</option>
                             </select>
                         </div>
                         <div class="sm:w-1/5 relative">
@@ -83,14 +83,29 @@
         <main>
             <div class="flex max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
                 <div class="flex-1">
-                    <div class="w-full flex justify-between items-center">
-                        <span class="block mb-3">Résultat de recherche: 1</span>
-                        <span class="block mb-3">Trier par: </span>
+                    <div>
+                        <span class="block mb-3">Résultat de recherche: {{ count($jobs) }}</span>
                     </div>
                     <div class="mt-4 overflow-y-scroll" style="height: 72vh;">
+                        @if (session('message'))
+                        <div class="bg-green-300 text-white p-2 mb-4 rounded-md font-semibold">
+                            {{ session('message') }}
+                        </div>
+                        @endif
+                        @if (session('warning'))
+                        <div class="bg-yellow-200 text-black p-2 mb-4 rounded-md font-semibold">
+                            {{ session('warning') }}
+                        </div>
+                        @endif
+                        @if (count($jobs))
                         @foreach ($jobs as $job)
                         <x-job-card :job="$job" />
                         @endforeach
+                        @else
+                        <div>
+                            <span class="font-semibold text-black">Aucun job trouvé</span>
+                        </div>
+                        @endif
                     </div>
                 </div>
                 <div class="w-1/3 px-6">&nbsp;</div>

@@ -16,7 +16,7 @@
                             <div class="md:col-span-1">
                                 <div class="px-4 sm:px-0 mb-4">
                                     <h3 class="text-lg font-black leading-6 text-gray-900">
-                                        Mon CV
+                                        Mes offres
                                     </h3>
                                 </div>
                             </div>
@@ -42,10 +42,6 @@
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Spécialité
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Description
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -81,12 +77,6 @@
                                             <div class="text-sm text-gray-900">
                                                 {{ $job->speciality }}
                                             </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                {{ $job->description }}
-                                            </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $job->due_date->format('d-m-Y') }}

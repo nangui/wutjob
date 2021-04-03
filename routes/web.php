@@ -21,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
+Route::get(
+    '/search',
+    [WelcomeController::class, 'index']
+)->name(
+    'welcome'
+);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

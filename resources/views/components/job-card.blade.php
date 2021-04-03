@@ -3,7 +3,7 @@
 <div class="mb-4 p-6 shadow-sm hover:shadow-md rounded-md bg-white">
     <div class="flex justify-between items-center mb-2">
         <small class="block font-bold">{{ $job->enterprise }}</small>
-        <small class="block font-bold text-gray-400">Il y a 10 jours</small>
+        <small class="block font-bold text-gray-400">{{ $job->created_at }}</small>
     </div>
     <h3 class="font-black text-xl text-gray-800 leading-tight mb-2">
         {{ $job->title }}

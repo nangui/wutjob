@@ -18,7 +18,7 @@ class CreateAppliesTable extends Migration
             $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('user_id')->constrained('users');
             $table->boolean('acceptance')->default(false);
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
